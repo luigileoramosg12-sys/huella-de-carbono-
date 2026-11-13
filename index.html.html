@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Huella de carbono del grupo · Sesión 11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Fraunces:ital,wght@1,400;1,600&display=swap">
+<style>
+:root{--bg:#07110b;--bg2:#0d1c12;--card:rgba(20,38,26,.62);--line:rgba(190,235,120,.16);--text:#eef6e6;--mut:#9db397;--lime:#b9e35c;--ink:#10200a;--viv:#5fc2a4;--via:#e8b04a;--con:#b9e35c;--glow:rgba(185,227,92,.18);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f1f6ea;--bg2:#e4eed8;--card:rgba(255,255,255,.72);--line:rgba(40,80,20,.16);--text:#13230e;--mut:#4b5f43;--lime:#4a8512;--ink:#fff;--viv:#2f9a7c;--via:#c98a14;--con:#6aa615;--glow:rgba(74,133,18,.14);color-scheme:light}}
+:root[data-theme="light"]{--bg:#f1f6ea;--bg2:#e4eed8;--card:rgba(255,255,255,.72);--line:rgba(40,80,20,.16);--text:#13230e;--mut:#4b5f43;--lime:#4a8512;--ink:#fff;--viv:#2f9a7c;--via:#c98a14;--con:#6aa615;--glow:rgba(74,133,18,.14);color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font:400 16px/1.6 Manrope,system-ui,sans-serif;color:var(--text);background:var(--bg);
+background-image:radial-gradient(60rem 36rem at 12% -6%,var(--glow),transparent 70%),radial-gradient(44rem 30rem at 100% 28%,var(--glow),transparent 70%),radial-gradient(40rem 30rem at 0% 72%,var(--glow),transparent 70%);background-attachment:fixed}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin:14px auto 0;max-width:1080px;padding:0 20px}
+.bar{display:flex;align-items:center;gap:18px;padding:10px 12px 10px 18px;border:1px solid var(--line);border-radius:999px;background:var(--card);backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:.02em}
+.brand svg{width:22px;height:22px;color:var(--lime)}
+.links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.links a{text-decoration:none;font-size:14px;color:var(--mut);padding:6px 12px;border-radius:999px;white-space:nowrap}
+.links a:hover,.links a:focus-visible{color:var(--text);background:var(--glow)}
+button{font:inherit;color:inherit;cursor:pointer}
+.ico{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;flex:none}
+:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;border:0;background:var(--lime);color:var(--ink);font-weight:800;text-decoration:none;box-shadow:0 0 34px var(--glow);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);box-shadow:none}
+.hero{text-align:center;padding:84px 0 40px}
+.pill{display:inline-block;padding:6px 16px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-size:13px;color:var(--mut)}
+h1{font-size:clamp(40px,8vw,84px);line-height:1.02;letter-spacing:-.035em;margin:22px auto 18px;max-width:14ch;font-weight:800;animation:rise .9s both}
+h1 em{font:italic 600 1.04em Fraunces,Georgia,serif;color:var(--lime);letter-spacing:-.02em}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}}
+.lead{max-width:54ch;margin:0 auto 28px;color:var(--mut);font-size:18px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:56px}
+.card{border:1px solid var(--line);border-radius:22px;background:var(--card);backdrop-filter:blur(12px);padding:22px}
+.stat b{display:block;font-size:40px;line-height:1.1;letter-spacing:-.03em;color:var(--lime)}
+.stat span{color:var(--mut);font-size:14px}
+section{padding:72px 0 8px}
+h2{font-size:clamp(28px,4.6vw,44px);line-height:1.1;letter-spacing:-.03em;margin:0 0 10px}
+.sub{color:var(--mut);max-width:60ch;margin:0 0 28px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.chip{padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:transparent;font-size:14px;display:inline-flex;align-items:center;gap:8px}
+.chip[aria-pressed="true"],.chip[aria-selected="true"]{background:var(--lime);color:var(--ink);border-color:var(--lime);font-weight:700}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.grid2{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+.row{display:grid;grid-template-columns:104px 1fr 54px;gap:10px;align-items:center;width:100%;padding:9px 6px;border:0;border-radius:12px;background:transparent;text-align:left}
+.row:hover,.row[aria-current="true"]{background:var(--glow)}
+.row .n{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .v{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+.track{position:relative;height:22px;border-radius:8px;background:rgba(127,160,110,.12)}
+.seg{position:absolute;top:0;height:100%;transition:left .6s cubic-bezier(.2,.8,.2,1),width .6s cubic-bezier(.2,.8,.2,1)}
+.seg:first-child{border-radius:8px 0 0 8px}
+.goal{position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px dashed var(--text);opacity:.55;pointer-events:none}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mut);margin-top:12px}
+.switch{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--mut);margin-bottom:12px}
+.switch button{width:44px;height:24px;border-radius:99px;border:1px solid var(--line);background:var(--glow);position:relative;padding:0}
+.switch button::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--text);transition:transform .25s}
+.switch button[aria-pressed="true"]{background:var(--lime)}
+.switch button[aria-pressed="true"]::after{transform:translateX(20px);background:var(--ink)}
+.big{font-size:56px;font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--lime)}
+.mini{display:grid;gap:8px;margin:16px 0}
+.mini div{display:grid;grid-template-columns:70px 1fr 46px;gap:8px;align-items:center;font-size:13px}
+.mini i{display:block;height:8px;border-radius:6px;transition:width .5s}
+.mini span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.tag{display:inline-block;margin:3px 4px 0 0;padding:3px 10px;border-radius:99px;background:var(--glow);font-size:12.5px}
+.sim label{display:grid;grid-template-columns:90px 1fr 48px;gap:10px;align-items:center;margin:14px 0;font-size:14px}
+input[type=range]{width:100%;accent-color:var(--lime)}
+.gauge{position:relative;height:16px;border-radius:99px;background:rgba(127,160,110,.14);margin:16px 0 8px;overflow:visible}
+.gauge i{display:block;height:100%;border-radius:99px;background:var(--lime);transition:width .4s}
+.gauge b{position:absolute;top:-5px;bottom:-5px;border-left:2px dashed var(--text);opacity:.6}
+.panel{margin-top:6px}
+.panel p{margin:0 0 10px;color:var(--mut)}
+.panel h3{margin:0 0 8px;font-size:22px}
+.formula{display:inline-block;margin-top:6px;padding:10px 18px;border-radius:14px;border:1px solid var(--line);font:italic 600 20px Fraunces,Georgia,serif;color:var(--lime)}
+ul.todo{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+ul.todo label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:14px;cursor:pointer}
+ul.todo input{accent-color:var(--lime);margin-top:5px;width:16px;height:16px}
+ul.todo input:checked+span{opacity:.55;text-decoration:line-through}
+.prog{height:6px;border-radius:9px;background:rgba(127,160,110,.14);margin:6px 0 16px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--lime);transition:width .4s}
+details{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:4px 18px;margin-bottom:10px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--lime);font-size:22px;line-height:1;transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:0 0 16px;color:var(--mut)}
+.closing{margin:72px 0 0;text-align:center;padding:40px 24px}
+.team{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+footer{padding:36px 0 48px;text-align:center;color:var(--mut);font-size:13px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav><div class="bar">
+<div class="brand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c3-4 6-7 10-9"/></svg>Huella 6.0</div>
+<div class="links"><a href="#resultados">Resultados</a><a href="#simulador">Simulador</a><a href="#marco">Marco conceptual</a><a href="#acciones">Acciones</a><a href="#repaso">Autoevaluación</a></div>
+<button class="ico" id="theme" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar tema">◐</button>
+</div></nav>
+
+<main class="wrap">
+<header class="hero">
+<span class="pill">Cambio climático y gestión de riesgo · Sesión 11 · Noviembre 2026</span>
+<h1>Medimos nuestra huella. <em>Ahora la reducimos.</em></h1>
+<p class="lead">Seis estudiantes de Ingeniería de Sistemas calcularon su huella de carbono personal con ClimateHero y asumieron compromisos concretos.</p>
+<div class="cta"><a class="btn" href="#resultados">Explorar resultados</a><a class="btn ghost" href="#simulador">Probar el simulador</a></div>
+<div class="stats">
+<div class="card stat"><b data-n="6.0" data-d="1" data-s=" t">0</b><span>Promedio del grupo por persona al año (tCO₂e)</span></div>
+<div class="card stat"><b data-n="2" data-d="0" data-s=" t">0</b><span>Meta global aproximada para no pasar de 1,5 °C</span></div>
+<div class="card stat"><b data-n="10.4" data-d="1" data-s=" t">0</b><span>Huella más alta del grupo, en viajes aéreos y terrestres</span></div>
+<div class="card stat"><b data-n="9.5" data-d="1" data-s=" t" data-p="−">0</b><span>Reducción total comprometida entre los seis</span></div>
+</div>
+</header>
+
+<section id="resultados">
+<h2>Resultados del grupo</h2>
+<p class="sub">Elige una persona para ver su desglose y sus compromisos. La línea punteada marca la meta de 2 t.</p>
+<div class="grid2">
+<div class="card">
+<div class="chips" id="cats"></div>
+<div class="switch"><button id="after" aria-pressed="false" aria-label="Mostrar huella restante tras los compromisos"></button><span>Ver huella restante tras los compromisos</span></div>
+<div id="bars"></div>
+<div class="legend"><span><i class="dot" style="background:var(--viv)"></i> Vivienda</span><span><i class="dot" style="background:var(--via)"></i> Viajar</span><span><i class="dot" style="background:var(--con)"></i> Consumo</span></div>
+</div>
+<div class="card" id="detail" aria-live="polite"></div>
+</div>
+</section>
+
+<section id="simulador">
+<h2>¿Y si todos reducimos?</h2>
+<p class="sub">Mueve los controles para ver cuánto bajaría el promedio del grupo si cada persona recortara una parte de cada categoría.</p>
+<div class="card sim">
+<label>Vivienda <input type="range" id="s0" min="0" max="80" value="0"><b id="o0">0%</b></label>
+<label>Viajar <input type="range" id="s1" min="0" max="80" value="0"><b id="o1">0%</b></label>
+<label>Consumo <input type="range" id="s2" min="0" max="80" value="0"><b id="o2">0%</b></label>
+<div class="gauge"><i id="gfill"></i><b id="gmeta"></b></div>
+<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline"><div><span class="big" id="avg">6,0</span> <span style="color:var(--mut)">tCO₂e por persona</span></div><p id="msg" style="margin:0;color:var(--mut)"></p></div>
+</div>
+</section>
+
+<section id="marco">
+<h2>Marco conceptual</h2>
+<p class="sub">Los cinco conceptos que sostienen el taller.</p>
+<div class="chips" role="tablist" id="ctabs"></div>
+<div class="card panel" id="cpanel" role="tabpanel"></div>
+</section>
+
+<section id="acciones">
+<h2>Propuesta de acciones sostenibles</h2>
+<p class="sub">Marca las que ya practicas o te comprometes a empezar.</p>
+<div class="chips" role="tablist" id="atabs"></div>
+<div class="prog"><i id="aprog"></i></div>
+<ul class="todo" id="alist"></ul>
+<p id="acount" style="color:var(--mut);font-size:14px"></p>
+</section>
+
+<section id="repaso">
+<h2>Autoevaluación</h2>
+<p class="sub">Respuestas clave del taller. Abre cada pregunta.</p>
+<div id="qa"></div>
+</section>
+
+<div class="card closing">
+<h2>Ciudadanía global, también desde el código</h2>
+<p class="sub" style="margin:0 auto">Como futuros ingenieros de sistemas podemos aportar desde la eficiencia energética de los sistemas hasta el monitoreo y la educación ambiental.</p>
+<div class="team" id="team"></div>
+</div>
+</main>
+<footer>Escuela Profesional de Ingeniería de Sistemas · Taller: Ciudadanía global en la adaptación y mitigación del cambio climático</footer>
+
+<script>
+const P=[
+{n:"Luigi Ramos",t:4.9,c:[.8,.8,3.3],r:2.4,k:["Generar propia electricidad","Vehículo eléctrico en taxis","Caminar o ir en bicicleta","Menos carne de ternera y cordero","Reducir desperdicio y compostar","Evitar aceite de palma y plástico","Comprar menos y reciclar al máximo"]},
+{n:"Keysin Llamo",t:2.9,c:[.8,.4,1.7],r:.2,k:["Ajustes principalmente en consumo"]},
+{n:"Alex Tuesta",t:6.4,c:[.3,1.3,4.8],r:1.0,k:["Viajar −0,7 t","Consumo −0,3 t"]},
+{n:"Lois Sandoval",t:10.4,c:[1.8,6.2,2.4],r:4.3,k:["Fuente de calor respetuosa con el clima −1,2 t","Evitar viajes aéreos","Caminar o ir en bicicleta","Más comida vegana","Compostar"]},
+{n:"Kenny Pizarro",t:3.4,c:[.8,.3,2.3],r:0,k:["Sin compromisos en la captura; se recomienda plantar árboles"]},
+{n:"Kriss Paucara",t:8.1,c:[.5,5.2,2.4],r:1.6,k:["Recortes principalmente en viajar"]}];
+const CAT=["Vivienda","Viajar","Consumo"],COL=["var(--viv)","var(--via)","var(--con)"],MAX=11;
+const f=(v,d=1)=>v.toLocaleString("es-PE",{minimumFractionDigits:d,maximumFractionDigits:d});
+const $=s=>document.querySelector(s);
+let on=[1,1,1],after=false,sel=0;
+// tema
+$("#theme").onclick=()=>{const r=document.documentElement,l=getComputedStyle(r).colorScheme==="light";r.dataset.theme=l?"dark":"light"};
+// contadores
+document.querySelectorAll("[data-n]").forEach(el=>{const n=+el.dataset.n,d=+el.dataset.d,s=el.dataset.s||"",p=el.dataset.p||"";
+if(matchMedia("(prefers-reduced-motion:reduce)").matches){el.textContent=p+f(n,d)+s;return}
+const t0=performance.now();(function st(t){const k=Math.min(1,(t-t0)/1400);el.textContent=p+f(n*(1-Math.pow(1-k,3)),d)+s;if(k<1)requestAnimationFrame(st)})(t0)});
+// gráfico
+$("#cats").innerHTML=CAT.map((c,i)=>`<button class="chip" aria-pressed="true" data-i="${i}"><i class="dot" style="background:${COL[i]}"></i>${c}</button>`).join("");
+$("#cats").onclick=e=>{const b=e.target.closest("button");if(!b)return;const i=+b.dataset.i;on[i]=on[i]?0:1;b.setAttribute("aria-pressed",!!on[i]);draw()};
+$("#after").onclick=e=>{after=!after;e.currentTarget.setAttribute("aria-pressed",after);draw()};
+$("#bars").innerHTML=P.map((p,i)=>`<button class="row" data-i="${i}"><span class="n">${p.n}</span><span class="track">${[0,1,2].map(j=>`<span class="seg" style="background:${COL[j]}"></span>`).join("")}<span class="goal" style="left:${2/MAX*100}%"></span></span><span class="v"></span></button>`).join("");
+$("#bars").onclick=e=>{const b=e.target.closest(".row");if(b){sel=+b.dataset.i;draw()}};
+function draw(){document.querySelectorAll(".row").forEach((row,i)=>{const p=P[i];let x=0,tot=0;
+row.setAttribute("aria-current",i===sel);
+row.querySelectorAll(".seg").forEach((s,j)=>{let v=after?(j===2?Math.max(0,p.t-p.r)-0:0):p.c[j]*on[j];
+if(after){v=j===0?Math.max(0,p.t-p.r):0}
+s.style.left=x/MAX*100+"%";s.style.width=v/MAX*100+"%";if(after)s.style.background="var(--lime)";else s.style.background=COL[j];x+=v;tot+=v});
+row.querySelector(".v").textContent=f(tot)})
+const p=P[sel],rest=Math.max(0,p.t-p.r);
+$("#detail").innerHTML=`<h3 style="margin:0 0 4px;font-size:22px">${p.n}</h3><div><span class="big">${f(p.t)}</span> <span style="color:var(--mut)">tCO₂e al año</span></div>
+<div class="mini">${CAT.map((c,j)=>`<div><span>${c}</span><span style="background:rgba(127,160,110,.14);border-radius:6px"><i style="width:${p.c[j]/p.t*100}%;background:${COL[j]}"></i></span><span>${f(p.c[j])} t</span></div>`).join("")}</div>
+<p style="margin:0 0 6px"><b>Compromiso:</b> ${p.r?"−"+f(p.r)+" t, quedaría en "+f(rest)+" t":"0,0 t"}</p>${p.k.map(k=>`<span class="tag">${k}</span>`).join("")}`}
+draw();
+// simulador
+const av=[0,1,2].map(j=>P.reduce((a,p)=>a+p.c[j],0)/P.length);
+function sim(){let a=0;[0,1,2].forEach(j=>{const v=+$("#s"+j).value;$("#o"+j).textContent=v+"%";a+=av[j]*(1-v/100)});
+$("#avg").textContent=f(a);$("#gfill").style.width=Math.min(100,a/7*100)+"%";$("#gmeta").style.left=2/7*100+"%";
+$("#msg").textContent=a<=2?"Meta de 2 t alcanzada.":"Faltan "+f(a-2)+" t por persona para llegar a la meta."}
+document.querySelectorAll("input[type=range]").forEach(r=>r.oninput=sim);sim();
+// pestañas
+function tabs(id,items,fn){const el=$(id);el.innerHTML=items.map((x,i)=>`<button class="chip" role="tab" aria-selected="${i==0}" data-i="${i}">${x.t}</button>`).join("");
+const go=i=>{el.querySelectorAll(".chip").forEach((b,k)=>b.setAttribute("aria-selected",k===i));fn(i)};
+el.onclick=e=>{const b=e.target.closest("button");if(b)go(+b.dataset.i)};go(0)}
+const C=[
+{t:"Ciudadanía global",h:"Acciones colectivas con mirada mundial",p:["Abarca las acciones sociales, políticas, ambientales y económicas de personas y comunidades con pensamiento global.","Se une al cambio climático porque los desafíos ambientales son globales y exigen una respuesta coordinada."]},
+{t:"Adaptación y mitigación",h:"Convivir con el cambio y frenarlo",p:["Adaptación: ajustar sistemas naturales o humanos a los efectos del clima para moderar el daño. Ejemplos: infraestructura resistente al clima, agricultura adaptativa, planificación urbana sostenible.","Mitigación: reducir o prevenir las emisiones de gases de efecto invernadero. Ejemplos: energías renovables, eficiencia energética, conservación y reforestación."]},
+{t:"Huella ecológica",h:"Cuánto pedimos al planeta",p:["Mide la demanda humana sobre los ecosistemas: consumo dividido entre productividad.","La biocapacidad es la capacidad de los ecosistemas para regenerar recursos y absorber desechos. Hoy la humanidad consume más de lo que el planeta regenera."]},
+{t:"Huella hídrica",h:"El agua detrás de cada producto",p:["Mide el impacto humano en los recursos hídricos y se clasifica en azul (agua superficial y subterránea), verde (agua de lluvia) y gris (agua contaminada).","La agricultura representa cerca del 70% del consumo mundial de agua dulce."]},
+{t:"Huella de carbono",h:"Gases de efecto invernadero, en toneladas",p:["Total de GEI emitidos directa o indirectamente por actividades humanas, medido en toneladas de CO₂ equivalente.","Directas: combustibles fósiles y transporte. Indirectas: producción y transporte de bienes y servicios.",'<span class="formula">tnCO₂eq = Fe × A</span><br><small>Fe es el factor de emisión y A es la actividad.</small>']}];
+tabs("#ctabs",C,i=>{$("#cpanel").innerHTML=`<h3>${C[i].h}</h3>`+C[i].p.map(x=>`<p>${x}</p>`).join("")});
+const A=[
+{t:"Personal",l:["Reducir el consumo de agua y energía en casa: luces LED, electrodomésticos eficientes, generación solar","Priorizar transporte público, bicicleta, caminar y vehículos de baja o nula emisión","Comer con menos carne de res y cordero, desperdiciar menos y compostar","Comprar menos, preferir productos locales y de temporada, evitar plásticos de un solo uso y aceite de palma"]},
+{t:"Comunidad e institución",l:["Organizar campañas sobre huella de carbono y huella hídrica en la universidad","Impulsar programas de reciclaje y compostaje en el campus","Desarrollar o apoyar apps y dashboards para seguir huellas ambientales","Incorporar criterios de sostenibilidad y green IT en el diseño de software"]},
+{t:"Difusión",l:["Compartir resultados, compromisos y buenas prácticas en redes sociales, blogs y plataformas educativas"]}];
+const done={};
+tabs("#atabs",A,i=>{const L=A[i].l;done[i]=done[i]||{};
+$("#alist").innerHTML=L.map((x,k)=>`<li><label><input type="checkbox" data-k="${k}" ${done[i][k]?"checked":""}><span>${x}</span></label></li>`).join("");
+const upd=()=>{const n=Object.values(done[i]).filter(Boolean).length;$("#aprog").style.width=n/L.length*100+"%";$("#acount").textContent=n+" de "+L.length+" acciones marcadas"+(n===L.length?". Todo el nivel completo.":".")};
+$("#alist").onchange=e=>{done[i][e.target.dataset.k]=e.target.checked;upd()};upd()});
+// autoevaluación
+const Q=[["¿Qué es la huella ecológica y por qué importa?","Mide la demanda humana sobre los ecosistemas, es decir, recursos consumidos y residuos generados. Permite evaluar la sostenibilidad, detectar el sobreconsumo y orientar prácticas hacia la regeneración de la biocapacidad."],
+["¿Qué es la biocapacidad y cómo se relaciona con la huella ecológica?","Es la capacidad de los ecosistemas para regenerar recursos y absorber desechos. Cuando la huella supera la biocapacidad hay un déficit ecológico (overshoot), como ocurre hoy a nivel global."],
+["¿Cómo impacta la huella hídrica en el cambio climático?","Cuantifica el uso de agua dulce azul, verde y gris. Influye por la energía necesaria para extraer, tratar y distribuir agua, la deforestación ligada a la agricultura y las emisiones de la ganadería y la industria."],
+["¿Cómo reducir la huella de carbono?","Personal: eficiencia energética, renovables, transporte sostenible, dieta más vegetal y menos residuos. Comunitario: campañas educativas, reciclaje y compostaje, energías renovables locales y participación en movimientos climáticos."],
+["¿Qué buenas prácticas ambientales existen en ingeniería?","Sistemas eficientes en energía, centros de datos optimizados (green computing), plataformas de monitoreo ambiental, simulación de escenarios climáticos y apoyo tecnológico a la economía circular y a las renovables."]];
+$("#qa").innerHTML=Q.map(q=>`<details><summary>${q[0]}</summary><p>${q[1]}</p></details>`).join("");
+$("#team").innerHTML=["Luigi Lionell Ramos Guelac","Keysin Llamo León","Alex Tuesta Rojas","Lois Arcenio Sandoval Romero","Kenny Pizarro Flores","Kriss Ángel Paucara Fachín"].map(n=>`<span class="chip">${n}</span>`).join("");
+</script>
+</body>
+</html>
